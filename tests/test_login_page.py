@@ -1,6 +1,6 @@
 import sys
 sys.path.append('..')
-from pages.login_page import LoginPage
+from pages.login_page import LoginPage, LoginLocators
 import pytest
 import time
 
@@ -26,13 +26,13 @@ def test_login_enter(login_page):
     """ Проверка ввода логина """
     login_page.login_enter()
     time.sleep(1)
-    assert login_page.checking_login_field() == 'test@test.testtest'
+    assert login_page.checking_login_field() == LoginLocators.EMAIL
     
 def test_password_enter(login_page):
     """ Проверка ввода пароля """
     login_page.password_enter()
     time.sleep(1)
-    assert login_page.checking_password_field() == 'qwerty123'
+    assert login_page.checking_password_field() == LoginLocators.PASS
     
 def test_click_submit_button(login_page):
     """ Проверка авторизации """
