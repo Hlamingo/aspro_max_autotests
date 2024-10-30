@@ -14,6 +14,7 @@ class LoginLocators:
     SUBMIT_BUTTON = (By.NAME, 'Login1')
     LOGIN_ERROR = (By.CLASS_NAME, 'alert.alert-danger.compact')
     AUTH_RESULT = (By.XPATH, '//span[text()="Мой кабинет"]')
+    # Данные для авторизации
     EMAIL = os.getenv('ASPRO_LOGIN')
     PASS = os.getenv('ASPRO_PASS')
     

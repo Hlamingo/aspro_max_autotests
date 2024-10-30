@@ -16,6 +16,10 @@ class RegisterLocators:
     CHECKBOX_LICENSES_REGISTER = (By.ID, 'licenses_register')
     SUBMIT_BUTTON = (By.NAME, 'register_submit_button1')
     REGISTER_ERROR = (By.CLASS_NAME, 'errortext')
+    # Данные для регистрации
+    EMAIL = os.getenv('ASPRO_LOGIN')
+    PASS = os.getenv('ASPRO_PASS')
+    PHONE = os.getenv('ASPRO_PHONE')
     
 class RegisterPage(BasePage):
     
@@ -45,28 +49,28 @@ class RegisterPage(BasePage):
         """ Вводит email """
         return self.find_element(
             RegisterLocators.REGISTER_EMAIL).send_keys(
-            'test@test.test'
+                RegisterLocators.EMAIL
             )
     # ~ 'qa.test.2025@mail.ru'
     def register_phone_field(self):
         """ Вводит номер телефона """
         return self.find_element(
             RegisterLocators.REGISTER_PERSONAL_PHONE).send_keys(
-            '+70000000000'
+                RegisterLocators.PHONE
             )
     
     def register_password_field(self):
         """ Вводит пароль """
         return self.find_element(
             RegisterLocators.REGISTER_PASSWORD).send_keys(
-            'qwerty123'
+                RegisterLocators.PASS
             )
     
     def register_confirm_password(self):
         """ Подтверждает пароль """
         return self.find_element(
             RegisterLocators.REGISTER_CONFIRM_PASSWORD).send_keys(
-            'qwerty123'
+                RegisterLocators.PASS
             )
     
     def confirm_licenses_register(self):
