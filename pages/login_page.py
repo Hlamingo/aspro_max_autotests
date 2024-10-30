@@ -3,6 +3,7 @@ sys.path.append('..')
 from pages.base_page import BasePage
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import TimeoutException
+import os
 
 class LoginLocators:
     """ Локаторы для главной страницы """
@@ -13,6 +14,8 @@ class LoginLocators:
     SUBMIT_BUTTON = (By.NAME, 'Login1')
     LOGIN_ERROR = (By.CLASS_NAME, 'alert.alert-danger.compact')
     AUTH_RESULT = (By.XPATH, '//span[text()="Мой кабинет"]')
+    EMAIL = os.getenv('ASPRO_LOGIN')
+    PASS = os.getenv('ASPRO_PASS')
     
 class LoginPage(BasePage):
     """ Страница авторизации """
@@ -39,7 +42,7 @@ class LoginPage(BasePage):
     def login_enter(self):
         """ Вводит лоин """
         self.find_element(LoginLocators.USER_LOGIN_FIELD).send_keys(
-            'test@test.testtest'
+                LoginLocators.EMAIL
             )
         
     def checking_login_field(self):
@@ -50,7 +53,7 @@ class LoginPage(BasePage):
     def password_enter(self):
         """ Вводит пароль """
         self.find_element(LoginLocators.USER_PASSWORD_FIELD).send_keys(
-            'qwerty123'
+                LoginLocators.PASS
             )
     
     def checking_password_field(self):
