@@ -27,7 +27,7 @@ class RegisterPage(BasePage):
     def __init__(self, driver):
         super().__init__(driver)
         self.base_url = 'https://max-demo.ru/auth/registration/?register=yes&backurl=/'
-
+    
     def click_your_city(self):
         """ Закрывает попап Ваш город ... ? """
         try:
@@ -41,25 +41,23 @@ class RegisterPage(BasePage):
 
     def register_name_field(self):
         """ Вводит ФИО """
-        return self.find_element(
-            RegisterLocators.REGISTER_NAME).send_keys(
+        self.find_element(RegisterLocators.REGISTER_NAME).send_keys(
             'ТЕСТ'
             )
         
     def register_email_field(self):
         """ Вводит email """
-        return self.find_element(
-            RegisterLocators.REGISTER_EMAIL).send_keys(
+        self.find_element(RegisterLocators.REGISTER_EMAIL).send_keys(
                 RegisterLocators.EMAIL
             )
-    # ~ 'qa.test.2025@mail.ru'
+            
     def register_phone_field(self):
         """ Вводит номер телефона """
-        return self.find_element(
+        self.find_element(
             RegisterLocators.REGISTER_PERSONAL_PHONE).send_keys(
                 RegisterLocators.PHONE
             )
-    
+        
     def register_password_field(self):
         """ Вводит пароль """
         return self.find_element(
@@ -69,7 +67,7 @@ class RegisterPage(BasePage):
     
     def register_confirm_password(self):
         """ Подтверждает пароль """
-        return self.find_element(
+        self.find_element(
             RegisterLocators.REGISTER_CONFIRM_PASSWORD).send_keys(
                 RegisterLocators.PASS
             )
@@ -80,12 +78,19 @@ class RegisterPage(BasePage):
             RegisterLocators.CHECKBOX_LICENSES_REGISTER
         )
         return self.checkbox_click(checkbox)
-        
+    
+    def checking_confirm_licenses_register(self):
+        """ Проверяет чекбокс согласия на обработку ПД """
+        checkbox = self.find_element(
+            RegisterLocators.CHECKBOX_LICENSES_REGISTER
+        )
+        return checkbox.is_selected()
+    
     def click_register_submit_button (self):
         """ Кликает на кнопку Зарегистрироваться """
         submit = self.find_element(RegisterLocators.SUBMIT_BUTTON)
         self.scroll_into_view(submit)
-        time.sleep(2)
+        time.sleep(1)
         return submit.click()
         
     def register_error (self):

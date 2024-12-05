@@ -25,6 +25,15 @@ class BasePage:
             EC.presence_of_all_elements_located(locator)
             )
             
+    def checking_field(self, element):
+        """ Возвращает значение из поля """
+        field = self.find_element(element)
+        return self.get_attribute(field)
+        
+    def page_title(self):
+        """Извлекает название страницы и возварщает текст"""
+        return self.driver.title
+        
     def get_attribute(self, element):
         """ Получает введенное значение из поля"""
         return element.get_attribute('value')

@@ -23,10 +23,6 @@ class LoginPage(BasePage):
     def __init__(self, driver):
         super().__init__(driver)
         
-    def page_title(self):
-        """Извлекает название страницы и возварщает текст"""
-        return self.driver.title
-        
     def click_login_button(self):
         """Находит кнопку 'Войти' и кликает её"""
         button = self.find_elements(LoginLocators.LOG_IN)
@@ -41,13 +37,13 @@ class LoginPage(BasePage):
         return login_popup.is_displayed()
     
     def login_enter(self):
-        """ Вводит лоин """
+        """ Вводит логин """
         self.find_element(LoginLocators.USER_LOGIN_FIELD).send_keys(
                 LoginLocators.EMAIL
             )
         
     def checking_login_field(self):
-        """ Возвращает значения в поле 'Логин' """
+        """ Возвращает значения из поля 'Логин' """
         login_field = self.find_element(LoginLocators.USER_LOGIN_FIELD)
         return self.get_attribute(login_field)
         
